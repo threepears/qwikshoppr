@@ -26,6 +26,30 @@ copy
   text-shadow: 0 1px 2px #336600;
 }
 
+.bar.bar-balanced,
+.tabs {
+  border-color: #336600;
+}
+
 ion-view.pane {
-  background-color: #e6ffcc;
+  /*background-color: #e6ffcc;*/
+  background-color: #2d4f20;
+  background-image: url(../img/cart-icon.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.checkbox input:checked:before,
+.checkbox input:checked + .checkbox-icon:before {
+  background-color: #336600;
+  border-color: #336600;
+}
+
+.selected {
+  opacity: 0.5;
+}
+
+ion-item h2 {
+  display: inline;
+  padding-left: 10px;
 }
