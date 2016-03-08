@@ -7,6 +7,7 @@
 }
 
 .bar-balanced.bar-header,
+ion-footer-bar.bar-footer,
 .tab-nav.tabs {
   background: #4d9900; /* Old browsers */
 background: -moz-linear-gradient(top, #4d9900 0%, #336600 100%); /* FF3.6-15 */
@@ -45,11 +46,29 @@ ion-view.pane {
   border-color: #336600;
 }
 
+.item-complex div.item-content {
+  padding: 8px 49px 8px 16px;
+}
+
 .selected {
   opacity: 0.5;
 }
 
-ion-item h2 {
-  display: inline;
-  padding-left: 10px;
+.product {
+  vertical-align: top;
+  display: inline-block;
+  margin: 12px 0 12px 10px;
 }
+
+ion-footer-bar.bar {
+  padding: 7px 10px;
+}
+
+ion-footer-bar input[type="text"] {
+  height: 28px;
+  width: 100%;
+  margin-right: 10px;
+}
+
+
+

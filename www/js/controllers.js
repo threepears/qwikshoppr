@@ -1,33 +1,54 @@
 angular.module('starter.controllers', [])
 
-.controller('AddCtrl', function($scope) {})
+.controller('MainCtrl', function($scope) {
 
-.controller('ListCtrl', function($scope, Lists) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  // Retrieve existing grocery list, if any, from local storage
+  let storedItems = JSON.parse(localStorage.getItem("groceries"));
 
-  $scope.lists = Lists.all();
-  $scope.remove = function(item) {
-    Lists.remove(item);
+
+  // Set scope variable with local storage list
+  $scope.groceryArray = storedItems;
+
+
+  // Add grocery items to list, both in local storage and scope
+  $scope.getGroceries = function() {
+
+    let groc = document.getElementById("groceries").value;
+
+    if (groc === "") {
+      return false;
+    }
+
+    console.log(groc);
+
+    let grocItems = groc.split('next');
+
+    grocItems = grocItems.map( e => {return e.trim();} );
+
+    console.log(grocItems);
+
+    if (storedItems) {
+      for (let i = 0; i < grocItems.length; i++) {
+        if (storedItems.indexOf(grocItems[i] !== -1)) {
+          storedItems.push(grocItems[i]);
+        }
+      }
+    } else {
+      storedItems = grocItems;
+    }
+
+    localStorage.setItem("groceries", JSON.stringify(storedItems));
+    $scope.groceryArray = storedItems;
+
+    console.log(storedItems);
   };
 
-  $scope.checkItem = function (item) {
-    console.log(item);
-  }
+
+  // Delete item from page and local storage
+  $scope.deleteItem = function(item) {
+    let position = storedItems.indexOf(item);
+    storedItems.splice(position, 1);
+    localStorage.setItem("groceries", JSON.stringify(storedItems));
+  };
 
 })
-
-// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// })
-
-// .controller('AccountCtrl', function($scope) {
-//   $scope.settings = {
-//     enableFriends: true
-//   };
-// });

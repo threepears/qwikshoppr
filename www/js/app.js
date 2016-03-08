@@ -31,65 +31,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
+    .state('index', {
+    url: '/',
+    templateUrl: 'templates/home.html',
+    controller: 'MainCtrl'
   })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.lists', {
-    url: '/lists',
-    views: {
-      'tab-lists': {
-        templateUrl: 'templates/tab-lists.html',
-        controller: 'ListCtrl'
-      }
-    }
-  })
+  // .state('home', {
+  //   url: '/',
+  //   templateUrl: 'templates/home.html',
+  //   controller: 'HomeCtrl'
+  // })
 
-  .state('tab.additems', {
-    url: '/additems',
-    views: {
-      'additems': {
-        templateUrl: 'templates/tab-additems.html',
-        controller: 'AddCtrl'
-      }
-    }
-  });
-
-  // .state('tab.chats', {
-  //     url: '/chats',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/tab-chats.html',
-  //         controller: 'ChatsCtrl'
-  //       }
-  //     }
-  //   })
-  //   .state('tab.chat-detail', {
-  //     url: '/chats/:chatId',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/chat-detail.html',
-  //         controller: 'ChatDetailCtrl'
-  //       }
-  //     }
-  //   })
-
-  // .state('tab.account', {
-  //   url: '/account',
+  // .state('tab.additems', {
+  //   url: '/additems',
   //   views: {
-  //     'tab-account': {
-  //       templateUrl: 'templates/tab-account.html',
-  //       controller: 'AccountCtrl'
+  //     'additems': {
+  //       templateUrl: 'templates/tab-additems.html',
+  //       controller: 'AddCtrl'
   //     }
   //   }
   // });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/lists');
+  $urlRouterProvider.otherwise('/');
 
 });
