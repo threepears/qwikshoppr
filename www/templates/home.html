@@ -2,7 +2,7 @@
   <ion-content>
 
     <ion-list show-delete="false" can-swipe="true">
-      <ion-item ng-repeat="item in groceryArray" ng-class="{selected: selectedItem}">
+      <ion-item ng-repeat="item in storedItems" ng-class="{selected: selectedItem}">
 
         <label class="checkbox">
           <input type="checkbox" ng-click="clickItem(item); $event.stopPropagation();" ng-model="selectedItem">
@@ -18,3 +18,13 @@
 
   </ion-content>
 </ion-view>
+
+<ion-footer-bar align-title="center">
+
+          <input type="text" name="q" id="transcript" placeholder="Speak" />
+          <button type="button" ng-click="startDictation()">Go</button>
+
+<!--       <input type="text" name="groceries" id="groceries">
+      <button type="button" ng-click="getGroceries()">Go</button> -->
+
+    </ion-footer-bar>

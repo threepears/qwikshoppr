@@ -60,6 +60,10 @@ ion-view.pane {
   margin: 12px 0 12px 10px;
 }
 
+#transcript {
+  display: none;
+}
+
 ion-footer-bar.bar {
   padding: 7px 10px;
 }
