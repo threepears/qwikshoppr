@@ -2,40 +2,25 @@ angular.module('starter.controllers', [])
 
 .controller('MainCtrl', function($scope, $rootScope) {
 
-  // Retrieve existing grocery list, if any, from local storage
-
+  // Retrieve and assign existing grocery list, if any, from local storage to scope variable (or assign empty array)
   $rootScope.storedItems = JSON.parse(localStorage.getItem("groceries")) || [];
-
-
-  // Set scope variable with local storage list
-  // $scope.groceryArray = $scope.storedItems || [];
 
 
   // Add grocery items to list, both in local storage and scope
   $scope.getGroceries = function(spokenGroc) {
     var localItems = $rootScope.storedItems;
 
-    // let groc = spokenGroc;
-    // document.getElementById("groceries").value;
-    console.log(spokenGroc);
-
     if (spokenGroc === "") {
       return false;
     }
 
-    console.log(spokenGroc);
-
-    let grocItems = spokenGroc.split('next');
-
+    let grocItems = spokenGroc.toLowerCase().split('next');
     grocItems = grocItems.map( e => {return e.trim();} );
-
-    console.log(grocItems);
 
     if (localItems) {
       for (let i = 0; i < grocItems.length; i++) {
         if (localItems.indexOf(grocItems[i] !== -1)) {
           localItems.push(grocItems[i]);
-          console.log(localItems);
         }
       }
     } else {
@@ -44,13 +29,9 @@ angular.module('starter.controllers', [])
 
     localStorage.setItem("groceries", JSON.stringify(localItems));
 
-    console.log(localItems);
     $rootScope.storedItems = localItems;
-    // console.log($scope.groceryArray);
 
-    // $scope.groceryArray.push($scope.storedItems);
     $scope.$digest();
-
   };
 
 
@@ -68,12 +49,9 @@ angular.module('starter.controllers', [])
       recognition.start();
 
       recognition.onresult = function(e) {
-        // document.getElementById('transcript').value
         var spokenGroc = e.results[0][0].transcript;
-        console.log(spokenGroc);
         $scope.getGroceries(spokenGroc);
         recognition.stop();
-        // document.getElementById('labnol').submit();
       };
 
       recognition.onerror = function(e) {
@@ -85,13 +63,10 @@ angular.module('starter.controllers', [])
 
   // Delete item from page and local storage
   $scope.deleteItem = function(item) {
-    console.log(item);
     let position = $rootScope.storedItems.indexOf(item);
-    console.log($rootScope.storedItems);
+
     $rootScope.storedItems.splice(position, 1);
-    console.log($rootScope.storedItems);
     localStorage.setItem("groceries", JSON.stringify($rootScope.storedItems));
-    console.log($rootScope.storedItems);
   };
 
 })
