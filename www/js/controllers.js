@@ -2,28 +2,26 @@ angular.module('starter.controllers', [])
 
 .controller('MainCtrl', function($scope, $rootScope) {
 
+  var recognition = new webkitSpeechRecognition();
+  var button = document.getElementById("transcriptButton");
+  var toggled = false;
+
+
   // Retrieve and assign existing grocery list, if any, from local storage to scope variable (or assign empty array)
   $rootScope.storedItems = JSON.parse(localStorage.getItem("groceries")) || [];
 
 
   // Add grocery items to list, both in local storage and scope
   $scope.getGroceries = function(spokenGroc) {
-    var localItems = $rootScope.storedItems;
 
-    console.log("6");
-    console.log(spokenGroc);
-    console.log(localItems);
+    var localItems = $rootScope.storedItems;
 
     if (spokenGroc === "") {
       return false;
     }
 
-    console.log(spokenGroc);
-
     let grocItems = spokenGroc.toLowerCase().split('next');
     grocItems = grocItems.map( e => {return e.trim();} );
-
-    console.log(grocItems);
 
     if (localItems) {
       for (let i = 0; i < grocItems.length; i++) {
@@ -35,27 +33,12 @@ angular.module('starter.controllers', [])
       localItems = grocItems;
     }
 
-    console.log(spokenGroc);
-    console.log(localItems);
-    console.log("7");
-
     localStorage.setItem("groceries", JSON.stringify(localItems));
-
-    console.log("8", localItems);
 
     $rootScope.storedItems = localItems;
 
-    console.log(localItems);
-
     $scope.$digest();
   };
-
-
-
-  var recognition = new webkitSpeechRecognition();
-  var button = document.getElementById("transcriptButton");
-  var spokenGroc;
-  var toggled = false;
 
 
   $scope.reset = function() {
@@ -80,7 +63,6 @@ angular.module('starter.controllers', [])
 
     button.innerHTML = "Recording";
     button.classList.add('recording');
-    console.log("3");
 
     if (window.hasOwnProperty('webkitSpeechRecognition')) {
 
@@ -89,17 +71,14 @@ angular.module('starter.controllers', [])
 
       recognition.lang = "en-US";
       recognition.start();
-      console.log("3.5");
 
+      // Process voice results when received
       recognition.onresult = function(e) {
-        console.log(e);
-        console.log("4");
         $scope.transResults = (e.results[0][0].transcript);
-        console.log($scope.transResults);
       };
 
+      // When recognition ended, send results to grocery function
       recognition.onend = function(e) {
-        console.log("5.75");
         $scope.getGroceries($scope.transResults);
       };
 
