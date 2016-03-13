@@ -3,7 +3,6 @@
 
     <ion-list show-delete="false" can-swipe="true">
       <ion-item ng-repeat="item in storedItems" ng-class="{selected: selectedItem}">
-
         <label class="checkbox">
           <input type="checkbox" ng-click="clickItem(item); $event.stopPropagation();" ng-model="selectedItem">
         <!--  ng-model="item.checked" -->
@@ -22,5 +21,6 @@
 
 <ion-footer-bar align-title="center">
   <input type="text" name="q" id="transcript" placeholder="Speak" />
-  <button type="button" ng-click="startDictation()">Go</button>
+  <button type="button" id="transcriptButton" ng-click="toggle()">Record</button>
+  <!-- ng-click="search();match()" -->
 </ion-footer-bar>
