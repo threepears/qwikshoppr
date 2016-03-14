@@ -14,6 +14,7 @@ angular.module('starter.controllers', [])
 
   // Add grocery items to list, both in local storage and scope
   $scope.getGroceries = function(spokenGroc) {
+    console.log("6");
 
     var localItems = $rootScope.storedItems;
 
@@ -53,9 +54,10 @@ angular.module('starter.controllers', [])
   $scope.toggle = function() {
       if (toggled) {
           recognition.stop();
-          console.log("3");
+          console.log("4");
           $scope.reset();
       } else {
+          console.log("1");
           $scope.startDictation();
       }
       toggled = !toggled;
@@ -70,7 +72,7 @@ angular.module('starter.controllers', [])
       button.innerHTML = "Recording";
       button.classList.add('recording');
 
-      console.log("1");
+      console.log("2");
       recognition.continuous = true;
       recognition.interimResults = false;
 
@@ -79,13 +81,15 @@ angular.module('starter.controllers', [])
 
       // Process voice results when received
       recognition.onresult = function(e) {
-        console.log("2");
+        console.log("3");
+        console.log(e);
         $scope.transResults = (e.results[0][0].transcript);
       };
 
       // When recognition ended, send results to grocery function
       recognition.onend = function(e) {
-        console.log("4");
+        console.log("5");
+        console.log("e");
         $scope.getGroceries($scope.transResults);
       };
 
