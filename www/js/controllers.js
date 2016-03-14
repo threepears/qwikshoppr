@@ -20,11 +20,13 @@ angular.module('starter.controllers', [])
       return false;
     }
 
-    let grocItems = spokenGroc.toLowerCase().split('next');
-    grocItems = grocItems.map( e => {return e.trim();} );
+    var grocItems = spokenGroc.toLowerCase().split('next');
+    grocItems = grocItems.map(function (e) {
+      return e.trim();
+    });
 
     if (localItems) {
-      for (let i = 0; i < grocItems.length; i++) {
+      for (var i = 0; i < grocItems.length; i++) {
         if (localItems.indexOf(grocItems[i] !== -1)) {
           localItems.push(grocItems[i]);
         }
@@ -91,7 +93,7 @@ angular.module('starter.controllers', [])
 
   // Delete item from page and local storage
   $scope.deleteItem = function(item) {
-    let position = $rootScope.storedItems.indexOf(item);
+    var position = $rootScope.storedItems.indexOf(item);
 
     $rootScope.storedItems.splice(position, 1);
     localStorage.setItem("groceries", JSON.stringify($rootScope.storedItems));
