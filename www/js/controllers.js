@@ -67,8 +67,8 @@ angular.module('starter.controllers', [])
   // HTML5 Speech Recognition API
   $scope.startDictation = function() {
 
-    if (window.hasOwnProperty('SpeechRecognition')) {
-      recognition = new SpeechRecognition();
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+      recognition = new webkitSpeechRecognition();
       button.innerHTML = "Recording";
       button.classList.add('recording');
 
