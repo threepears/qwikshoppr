@@ -2,7 +2,8 @@ angular.module('starter.controllers', [])
 
 .controller('MainCtrl', function($scope, $rootScope) {
 
-  var recognition = new webkitSpeechRecognition();
+  var recognition;
+  // var recognition = new webkitSpeechRecognition();
   var button = document.getElementById("transcriptButton");
   var toggled = false;
 
@@ -52,6 +53,7 @@ angular.module('starter.controllers', [])
   $scope.toggle = function() {
       if (toggled) {
           recognition.stop();
+          console.log("3");
           $scope.reset();
       } else {
           $scope.startDictation();
@@ -63,11 +65,12 @@ angular.module('starter.controllers', [])
   // HTML5 Speech Recognition API
   $scope.startDictation = function() {
 
-    button.innerHTML = "Recording";
-    button.classList.add('recording');
+    if (window.hasOwnProperty('SpeechRecognition')) {
+      recognition = new SpeechRecognition();
+      button.innerHTML = "Recording";
+      button.classList.add('recording');
 
-    if (window.hasOwnProperty('webkitSpeechRecognition')) {
-
+      console.log("1");
       recognition.continuous = true;
       recognition.interimResults = false;
 
@@ -76,17 +79,21 @@ angular.module('starter.controllers', [])
 
       // Process voice results when received
       recognition.onresult = function(e) {
+        console.log("2");
         $scope.transResults = (e.results[0][0].transcript);
       };
 
       // When recognition ended, send results to grocery function
       recognition.onend = function(e) {
+        console.log("4");
         $scope.getGroceries($scope.transResults);
       };
 
       recognition.onerror = function(e) {
         recognition.stop();
       }
+    } else {
+      console.log("No speech recognition");
     }
   };
 
