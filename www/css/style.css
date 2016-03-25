@@ -60,7 +60,10 @@ ion-view.pane {
 }
 
 #transcript {
-  display: none;
+/*  display: none;*/
+  border-radius: 4px;
+  height: 100%;
+  padding-left: 10px;
 }
 
 ion-footer-bar.bar {
@@ -78,7 +81,7 @@ ion-footer-bar input[type="text"] {
 }
 
 .bar button {
-  width: 100%;
+  width: 30%;
   border: 1px solid rgba(64,64,64,0.8);
   border-radius: 6px;
   color: #fff;

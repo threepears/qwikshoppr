@@ -13,8 +13,11 @@ angular.module('starter.controllers', ['ionic'])
 
 
   // Add grocery items to list, both in local storage and scope
-  $scope.getGroceries = function(spokenGroc) {
+  $scope.getGroceries = function() {
     console.log("6");
+
+    var groceryList = document.getElementById("transcript");
+    var spokenGroc = groceryList.value;
 
     var localItems = $rootScope.storedItems;
 
@@ -36,6 +39,8 @@ angular.module('starter.controllers', ['ionic'])
     } else {
       localItems = grocItems;
     }
+
+    groceryList.value = "";
 
     localStorage.setItem("groceries", JSON.stringify(localItems));
 
