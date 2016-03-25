@@ -7,7 +7,6 @@ angular.module('starter.controllers', ['ionic'])
   var button = document.getElementById("transcriptButton");
   var toggled = false;
 
-
   // Retrieve and assign existing grocery list, if any, from local storage to scope variable (or assign empty array)
   $rootScope.storedItems = JSON.parse(localStorage.getItem("groceries")) || [];
 
