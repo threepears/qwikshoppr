@@ -107,5 +107,8 @@ ion-footer-bar input[type="text"] {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8e3e3e', endColorstr='#4f2020',GradientType=0 ); /* IE6-9 */
 }
 
+.item-options .button-assertive.ion-trash-a.button {
+  padding-left: 19px;
+}
 
 
