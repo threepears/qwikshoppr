@@ -1,6 +1,6 @@
 # QwikShoppr
 
-A mobile grocery shopping list management application built in Ionic with AngularJS.
+A grocery shopping list management mobile application built in Ionic with AngularJS.
 
 ### Goal
 
